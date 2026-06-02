@@ -1,17 +1,20 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
+// Firebase config — credentials loaded from .env (never hardcoded)
 const firebaseConfig = {
-  apiKey: "AIzaSyCza4cd-rcxm1PBoOuQ4_PoRpUwiV2IOh0",
-  authDomain: "novamart-86960.firebaseapp.com",
-  projectId: "novamart-86960",
-  storageBucket: "novamart-86960.firebasestorage.app",
-  messagingSenderId: "726281196154",
-  appId: "1:726281196154:web:417d8d55041543615161c3",
-  measurementId: "G-D23PQSQXGV"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
